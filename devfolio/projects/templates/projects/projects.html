@@ -3,13 +3,21 @@
 {% block content %}
 
 <h1>List of all Projects</h1>
-<p>←[31m
-    You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.←[0m
-    ←[31mRun 'python manage.py migrate' to apply them.←[0m
-    December 19, 2021 - 11:07:58
-    Django version 4.0, using settings 'devfolio.settings'
-    Starting development server at http://127.0.0.1:8000/
-    Quit the server with CTRL-BREAK.
-    [19/Dec/2021 11:07:58] ←[m"GET /projects/ HTTP/1.1" 200 30←[0m</p>
+{% if age >  10 %}
+<p>You are  eligible..!!</p>
+{%else%}
+<p>You are not eligible..!!</p>
+{%endif%}
+
+<p style="color:red">{{ message }} on date {{ date }} </p>
+
+<ul>
+    {% for project in projects %}
+    <li><a href="{% url 'project' project.id  %}">Title: {{ project.title }}</a></li>
+    <!-- /project/{{ project.id }} iski place par django ki way mai  -->
+    <li>Description: {{ project.description }}</li>
+    {% endfor %}
+</ul>
+
 
 {% endblock content%} 
